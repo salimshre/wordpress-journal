@@ -1,0 +1,67 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: wordpress_journal_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: journal_db
+      MYSQL_USER: journal_user
+      MYSQL_PASSWORD: journal_pass
+      MYSQL_ROOT_PASSWORD: journal_root_pass
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$${MYSQL_ROOT_PASSWORD} || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress_journal_app
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: journal_db
+      WORDPRESS_DB_USER: journal_user
+      WORDPRESS_DB_PASSWORD: journal_pass
+    volumes:
+      - wordpress_data:/var/www/html
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: wordpress_journal_phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: journal_user
+      PMA_PASSWORD: journal_pass
+
+  wpcli:
+    image: wordpress:cli
+    container_name: wordpress_journal_wpcli
+    depends_on:
+      - wordpress
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: journal_db
+      WORDPRESS_DB_USER: journal_user
+      WORDPRESS_DB_PASSWORD: journal_pass
+    volumes:
+      - wordpress_data:/var/www/html
+    entrypoint: ["wp"]
+
+volumes:
+  db_data:
+  wordpress_data:
