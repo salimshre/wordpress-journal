@@ -18,7 +18,7 @@ https://salimshrestha.com.np/
 - Yoast SEO, WP Super Cache, UpdraftPlus, Contact Form 7, and Classic Editor
 - Public-safe journal-derived starter posts
 - WordPress export XML in `exports/wordpress-journal.xml`
-- Deployment notes in `DEPLOY_CHECKLIST.md`
+- Structured documentation in `Documentation/`
 
 ## Local Setup
 
@@ -97,7 +97,21 @@ Before moving this site to production:
 - Enable SSL for `https://salimshrestha.com.np/`.
 - Configure backups before publishing.
 
-See `DEPLOY_CHECKLIST.md` for the full deployment checklist.
+See `Documentation/deployment/DEPLOY_CHECKLIST.md` for the full deployment checklist.
+
+## Documentation
+
+All project documentation is organized in:
+
+```text
+Documentation/
+```
+
+Start with:
+
+```text
+Documentation/README.md
+```
 
 ## Security Notes
 
