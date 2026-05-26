@@ -25,7 +25,7 @@ live deployment.
    - Complete the famous 5-minute install automatically:
      - Site title: "My Life Lab"
      - Admin user: admin
-     - Admin password: Admin@1234! (note this for the user)
+     - Admin password: use a local-only password and do not commit it
      - Admin email: admin@mylifelab.local
    - Set permalink structure to /%postname%/
    - Delete default sample content (Hello World post, sample page, 
