@@ -5,7 +5,7 @@ A local WordPress development setup for a personal blog focused on life tips, ro
 This repository is for local development and deployment preparation for:
 
 ```text
-https://salimshrestha.com.np/
+https://binita0.com.np/
 ```
 
 ## What Is Included

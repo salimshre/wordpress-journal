@@ -1,6 +1,6 @@
 # Deployment Checklist
 
-Live domain: https://salimshrestha.com.np/
+Live domain: https://binita0.com.np/
 
 ## 1. Choose Hosting
 
